@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from "axios";
 import List from './components/list';
-import { baseUrl } from './utils/constant';
-// const BASE_URI = process.env.BASE_URI
+const baseUrl = process.env.REACT_APP_BASE_URI
 
 function App() {
   const [name, setName] = useState("");
@@ -12,31 +11,19 @@ function App() {
   const [comment, setComment] = useState("");
   const [informations, setInformations] = useState([]);
   const [updateUi, setUpdateUi] = useState(false);
-  const [updateEmail, setUpdateEmail] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
   const [updateId, setUpdateId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     getInformation();
-    setUpdateEmail((prevState) => !prevState);
   }, [updateUi]);
-
-  useEffect(() => {
-    updateInboxEmail();
-  }, [updateEmail]);
 
   const getInformation = () => {
     axios.get(`${baseUrl}/get`).then((res) => {
       setInformations(res.data);
     });    
   };
-
-    const updateInboxEmail = () => {
-      axios.post(`${baseUrl}/email`).then((res) => {
-        console.log(res.data);
-      });
-    };
 
   const searchInformations = () => {
     

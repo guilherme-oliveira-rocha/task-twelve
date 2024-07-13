@@ -2,8 +2,7 @@ import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import axios from "axios";
-import { baseUrl } from "../utils/constant";
-// const BASE_URI = process.env.BASE_URI
+const baseUrl = process.env.REACT_APP_BASE_URI
 
 const list = ({ id, name, amount, comment, setUpdateUi, updateMode }) => {
 
