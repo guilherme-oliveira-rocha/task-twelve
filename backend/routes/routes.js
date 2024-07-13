@@ -1,8 +1,10 @@
 const {Router} = require("express")
 
 const { 
-    getInformations, 
-    saveInformations, 
+    getInformations,
+    searchInformations,
+    saveInformations,
+    getNewEmailsReceived,
     updateInformations, 
     deleteInformations 
 } = require("../controller/informationController")
@@ -10,7 +12,9 @@ const {
 const router = Router();
 
 router.get("/get", getInformations);
-router.post("/save", saveInformations);
+router.post("/search", searchInformations);
+router.post("/create", saveInformations);
+router.post("/", getNewEmailsReceived);
 router.put("/update/:id", updateInformations);
 router.delete("/delete/:id", deleteInformations);
 

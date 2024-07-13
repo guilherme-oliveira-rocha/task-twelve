@@ -3,26 +3,36 @@ import { BsTrash } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import axios from "axios";
 import { baseUrl } from "../utils/constant";
+// const BASE_URI = process.env.BASE_URI
 
 const list = ({ id, name, amount, comment, setUpdateUi, updateMode }) => {
 
     const removeInformation = () => {
         axios.delete(`${baseUrl}/delete/${id}`).then((res) => {
+            alert("Deleted Successfully!")
             console.log(res)
             setUpdateUi((prevState) => !prevState)
         })
     }
     
         return (
-            <li>
-                name: {name}<br></br>
-                amount: {amount}<br></br>
-                comment: {comment}<br></br>
-                <div className="\icon_holder">
-                        <BiEditAlt className="icon" onClick={() => updateMode(id, name, amount, comment)}/>
-                        <BsTrash className="icon" onClick={removeInformation}/>
-                </div>
-            </li>
+            <tr key={id}>
+                <td className="text-center border p-4 text-gray-700">{name}</td>
+                <td className="text-center border p-4 text-gray-700">{amount}</td>
+                <td className="text-center border p-4 text-gray-700">{comment}</td>
+                <td className="text-center border p-4 text-gray-700 flex justify-center items-center space-x-2">
+                    <BiEditAlt
+                    className="text-blue-500 cursor-pointer hover:text-blue-600 transition duration-300"
+                    size={24}
+                    onClick={() => updateMode(id, name, amount, comment)}
+                    />
+                    <BsTrash
+                    className="text-red-500 cursor-pointer hover:text-red-600 transition duration-300"
+                    size={24}
+                    onClick={removeInformation}
+                    />
+                </td>
+            </tr>
         )
 }
 
