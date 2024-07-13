@@ -28,15 +28,12 @@ function App() {
 
   const getInformation = () => {
     axios.get(`${baseUrl}/get`).then((res) => {
-      console.log("BANCO DE DADOS");
       setInformations(res.data);
     });    
   };
 
-  const updateInboxEmail = () => {
-    console.log("ENTREEI 22222222")
-      axios.post(`${baseUrl}/`).then((res) => {
-        console.log("GMAIL");
+    const updateInboxEmail = () => {
+      axios.post(`${baseUrl}/email`).then((res) => {
         console.log(res.data);
       });
     };
